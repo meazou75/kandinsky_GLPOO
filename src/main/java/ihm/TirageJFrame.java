@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -17,17 +15,15 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.Border;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import model.*;
-import dao.*;
 
 public class TirageJFrame extends JFrame {
 
 	private ModeleDynamique modele = new ModeleDynamique();
-	private final JTable tableau = new JTable(modele);
+	private final JTable tableau   = new JTable(modele);
 
 	public TirageJFrame() {
 		
@@ -45,17 +41,11 @@ public class TirageJFrame extends JFrame {
 		JPanel buttonPane = new JPanel();
 		buttonPane.setBackground(Color.BLACK);
 		
-		JButton button_julia = new JButton();
-		button_julia.setBackground(Color.BLACK);
-		button_julia.setForeground(Color.WHITE);
+		JButton generate = new JButton();
+		generate.setBackground(Color.BLACK);
+		generate.setForeground(Color.WHITE);
 		
-		buttonPane.add(button_julia);
-		
-		JButton button_mandelbrot = new JButton();
-		button_mandelbrot.setBackground(Color.BLACK);
-		button_mandelbrot.setForeground(Color.WHITE);
-		
-		buttonPane.add(button_mandelbrot);
+		buttonPane.add(generate);
 		
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
@@ -72,6 +62,7 @@ public class TirageJFrame extends JFrame {
 	private void build() {
 		JMenuBar menuBar = new JMenuBar();
 
+		/*
 		// MENU 1
 		JMenu menu1 = new JMenu("Fichier");
 		
@@ -82,8 +73,20 @@ public class TirageJFrame extends JFrame {
 		menu1.add(backMenu);
 
 		// MENU BAR
-		menuBar.add(menu1);
+		menuBar.add(menu1);*/
 
 		setJMenuBar(menuBar);
 	}
+	
+	private class BackAction extends AbstractAction{
+		private BackAction(String string) {
+    		super(string);
+    	}
+		public void actionPerformed(ActionEvent arg0) {
+			dispose();
+			//WelcomeJFrame f = new WelcomeJFrame();
+			//f.setVisible(true);
+		}
+    	
+    }
 }

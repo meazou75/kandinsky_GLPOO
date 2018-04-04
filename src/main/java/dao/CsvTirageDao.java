@@ -21,7 +21,7 @@ public class CsvTirageDao {
 
 		final List<String> lines = new ArrayList<String>();
 
-		final FileReader fr = new FileReader(file);
+		final FileReader fr     = new FileReader(file);
 		final BufferedReader br = new BufferedReader(fr);
 
 		// met les lignes du buffer dans la liste de lignes de tirage

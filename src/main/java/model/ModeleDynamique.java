@@ -19,20 +19,21 @@ public class ModeleDynamique extends AbstractTableModel {
 
 	private final String[] header;
 
-	private String fileName = "src/main/resources/euromillions_4.csv";
+	private String fileName  = "src/main/resources/euromillions_4.csv";
 	private CsvTirageDao dao = new CsvTirageDao(fileName);
+	
 	final List<Tirage> tirages;
 
 	public ModeleDynamique(String fileName) {
 		this.fileName = fileName;
-		dao = new CsvTirageDao(fileName);
-		tirages = dao.findAllTirages();
-		header = new String[] { "B1", "B2", "B3", "B4", "B5", "E1", "E2" };
+		dao           = new CsvTirageDao(fileName);
+		tirages       = dao.findAllTirages();
+		header        = new String[] { "B1", "B2", "B3", "B4", "B5", "E1", "E2" };
 	}
 
 	public ModeleDynamique() {
 		tirages = dao.findAllTirages();
-		header = new String[] { "Numero de tirage", "B1", "B2", "B3", "B4", "B5", "E1", "E2" };
+		header  = new String[] { "Numero de tirage", "B1", "B2", "B3", "B4", "B5", "E1", "E2" };
 	}
 
 	public int getColumnCount() { // retourne le nombre de colonnes
