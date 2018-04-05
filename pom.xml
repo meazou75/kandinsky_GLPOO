@@ -24,6 +24,13 @@
 			</roles>
 			<organization>ESIEA</organization>
 		</developer>
+		<developer>
+			<name>Hugo BLASCO</name>
+			<roles>
+				<role>Etudiant 3A-31</role>
+			</roles>
+			<organization>ESIEA</organization>
+		</developer>
 	</developers>
 	
 	<properties>
