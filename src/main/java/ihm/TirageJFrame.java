@@ -5,16 +5,22 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JWindow;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -25,9 +31,24 @@ public class TirageJFrame extends JFrame {
 	private ModeleDynamique modele = new ModeleDynamique();
 	private final JTable tableau   = new JTable(modele);
 
-	public TirageJFrame() {
-		
+	public TirageJFrame() throws MalformedURLException {
+
 		super();
+		JWindow window = new JWindow();
+		window.getContentPane().add(
+		    new JLabel("", new ImageIcon("231485.jpg"), SwingConstants.CENTER));
+		window.setBounds(0, 0, 1068, 576);
+		window.setVisible(true);
+		try {
+		    Thread.sleep(5000);
+		} catch (InterruptedException e) {
+		    e.printStackTrace();
+		}
+		window.setVisible(false);
+		window.dispose();
+		
+		
+		
 		setTitle("Liste des tirages");
 		setPreferredSize(new Dimension(1068, 576));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
