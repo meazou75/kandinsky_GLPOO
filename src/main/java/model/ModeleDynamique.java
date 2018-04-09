@@ -1,5 +1,6 @@
 package model;
 
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class ModeleDynamique extends AbstractTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private static final Logger LOGGER = Logger.getLogger(ModeleDynamique.class);
 	private final String[] header;
 
 	private String fileName  = "src/main/resources/euromillions_4.csv";
@@ -95,6 +96,15 @@ public class ModeleDynamique extends AbstractTableModel {
 	 * 
 	 * tirages.remove(rowIndex); fireTableRowsDeleted(rowIndex, rowIndex); }
 	 */
+	
+	public void ajouterTirage(final Tirage tirage) {
+		LOGGER.debug("ajouterTirage");
+
+		tirages.add(tirage);
+
+		final int position = tirages.size() - 1;
+		fireTableRowsInserted(position, position);
+	}
 	
 	public Tirage rowToTirage(int rowIndex) {
 		final SimpleTirage tirage = new SimpleTirage();

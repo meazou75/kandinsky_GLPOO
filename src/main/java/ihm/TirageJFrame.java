@@ -57,7 +57,7 @@ public class TirageJFrame extends JFrame {
 		
 		
 		
-		setTitle("Liste des tirages");
+		setTitle("Kandins'App");
 		setPreferredSize(new Dimension(1068, 576));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -69,7 +69,7 @@ public class TirageJFrame extends JFrame {
 		
 		JMenuBar menuBar = new JMenuBar();
 		final JMenu menuFichier = new JMenu("Fichier");
-		//menuFichier.addSeparator();
+		menuFichier.addSeparator();
 		
 		final JMenuItem menuQuitter = new JMenuItem(new QuitterAction("Quitter"));
 		menuFichier.add(menuQuitter);
@@ -199,13 +199,10 @@ public class TirageJFrame extends JFrame {
         public void actionPerformed(ActionEvent e) {
             //LOGGER.debug("Click sur le bouton ajouter");
 
-            //final AjouterModifierChienActionHandler handler = new AjouterModifierChienActionHandler(modele);
-            //AjouterModifierChienJDialog popup = new AjouterModifierChienJDialog(handler);
+            final AjouterTirageActionHandler handler = new AjouterTirageActionHandler(modele);
+            AjouterTirageJDialog popup = new AjouterTirageJDialog(handler);
 
-            //popup.setVisible(true);
-
-            // final Chien idefix = new SimpleChien("Idefix", "Idefix", MALE, LABRADOR, new String[] { "blanc" }, 25.0);
-            // modele.ajouterChien(idefix);
+            popup.setVisible(true);
         }
     }
 
