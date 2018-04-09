@@ -22,18 +22,57 @@ public class JCanvas extends JPanel {
 	int X = 800;
 	int Y = 600;
 
-	int boule1 = ThreadLocalRandom.current().nextInt(1, 51);
-	int boule2 = ThreadLocalRandom.current().nextInt(1, 51);
-	int boule3 = ThreadLocalRandom.current().nextInt(1, 51);
-	int boule4 = ThreadLocalRandom.current().nextInt(1, 51);
-	int boule5 = ThreadLocalRandom.current().nextInt(1, 51);
-	int etoile1 = ThreadLocalRandom.current().nextInt(1, 13);
-	int etoile2 = ThreadLocalRandom.current().nextInt(1, 13);
+	int boule1;
+	int boule2;
+	int boule3;
+	int boule4;
+	int boule5;
+	int etoile1;
+	int etoile2;
 
 	int nb_degrade;
 	int rand_fond = ThreadLocalRandom.current().nextInt(0, 6);
 
 	//int[] colors = new int[5]
+	
+	public JCanvas() {
+		super();
+		boule1=0;
+		boule2=0;
+		boule3=0;
+		boule4=0;
+		boule5=0;
+		etoile1=0;
+		etoile2=0;
+	}
+	
+	public void setB1(int b1) {
+		boule1 = b1;
+	}
+	
+	public void setB2(int b2) {
+		boule2 = b2;
+	}
+	
+	public void setB3(int b3) {
+		boule3 = b3;
+	}
+	
+	public void setB4(int b4) {
+		boule4 = b4;
+	}
+	
+	public void setB5(int b5) {
+		boule5 = b5;
+	}
+	
+	public void setE1(int e1) {
+		etoile1 = e1;
+	}
+	
+	public void setE2(int e2) {
+		etoile2 = e2;
+	}
 
 	public void paint(Graphics g) {
 		super.paint(g);

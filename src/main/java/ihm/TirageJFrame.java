@@ -229,20 +229,29 @@ public class TirageJFrame extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			LOGGER.debug("Click sur le bouton Dessiner");
 			final int[] rows = tableau.getSelectedRows();
-			int shape = 0;
-			int order = 0;
-			int fgColor = 0;
-			int bgColor = 0;
+			int b1 = 0;
+			int b2 = 0;
+			int b3 = 0;
+			int b4 = 0;
+			int b5 = 0;
+			int e1 = 0;
+			int e2 = 0;
 			for (int row : rows) {
-				shape = (shape + (int)tableau.getValueAt(row, 1))%2;
-				order = (order = (int)tableau.getValueAt(row, 2))%5;
-				fgColor = (fgColor + (int)tableau.getValueAt(row, 3))%10;
-				bgColor = (bgColor + (int)tableau.getValueAt(row, 4))%10;
+				b1 = (b1 + (int)tableau.getValueAt(row, 1));
+				b2 = (b2 + (int)tableau.getValueAt(row, 2));
+				b3 = (b3 + (int)tableau.getValueAt(row, 3));
+				b4 = (b4 + (int)tableau.getValueAt(row, 4));
+				b5 = (b5 + (int)tableau.getValueAt(row, 5));
+				e1 = (e1 + (int)tableau.getValueAt(row, 6));
+				e2 = (e2 + (int)tableau.getValueAt(row, 7));
 			}
-			//canvas.setShape(shape);
-			//canvas.setOrder(1+order);
-			//canvas.setFgColor(fgColor);
-			//canvas.setBgColor(bgColor);
+			canvas.setB1(b1);
+			canvas.setB2(b2);
+			canvas.setB3(b3);
+			canvas.setB4(b4);
+			canvas.setB5(b5);
+			canvas.setE1(e1);
+			canvas.setE2(e2);
 			canvas.repaint();
 		}
 	}
@@ -287,7 +296,6 @@ public class TirageJFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			LOGGER.debug("Click sur le bouton Effacer");
-
 			canvas.repaint();
 		}
 	}
