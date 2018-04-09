@@ -65,7 +65,7 @@ public class TirageJFrame extends JFrame {
 		 */
 
 
-		setTitle("Kandins'App");
+		setTitle("Kandinsk'App");
 		setPreferredSize(new Dimension(980,750));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -236,6 +236,7 @@ public class TirageJFrame extends JFrame {
 			int b5 = 0;
 			int e1 = 0;
 			int e2 = 0;
+			int fond = 0;
 			for (int row : rows) {
 				b1 = (b1 + (int)tableau.getValueAt(row, 1));
 				b2 = (b2 + (int)tableau.getValueAt(row, 2));
@@ -244,6 +245,7 @@ public class TirageJFrame extends JFrame {
 				b5 = (b5 + (int)tableau.getValueAt(row, 5));
 				e1 = (e1 + (int)tableau.getValueAt(row, 6));
 				e2 = (e2 + (int)tableau.getValueAt(row, 7));
+				fond = (e2 + (int)tableau.getValueAt(row, 7));
 			}
 			canvas.setB1(b1);
 			canvas.setB2(b2);
@@ -296,6 +298,13 @@ public class TirageJFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			LOGGER.debug("Click sur le bouton Effacer");
+			canvas.setB1(0);
+			canvas.setB2(0);
+			canvas.setB3(0);
+			canvas.setB4(0);
+			canvas.setB5(0);
+			canvas.setE1(0);
+			canvas.setE2(0);
 			canvas.repaint();
 		}
 	}

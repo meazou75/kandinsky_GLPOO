@@ -1,5 +1,6 @@
 package ihm;
 
+import org.apache.log4j.Logger;
 import java.lang.Object;
 import java.awt.Color;
 import java.awt.*;
@@ -9,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 import java.util.Date;
+import java.util.Random;
 import java.text.*;
 
 public class JCanvas extends JPanel {
@@ -17,21 +19,22 @@ public class JCanvas extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = Logger.getLogger(JCanvas.class);
 
+	private int X = 800;
+	private int Y = 600;
 
-	int X = 800;
-	int Y = 600;
+	private int boule1;
+	private int boule2;
+	private int boule3;
+	private int boule4;
+	private int boule5;
+	private int etoile1;
+	private int etoile2;
 
-	int boule1;
-	int boule2;
-	int boule3;
-	int boule4;
-	int boule5;
-	int etoile1;
-	int etoile2;
-
-	int nb_degrade;
-	int rand_fond = ThreadLocalRandom.current().nextInt(0, 6);
+	private int rand_fond = etoile1%6;
+	private int nb_degrade;
+	//int rand_fond = etoile1%6;
 
 	//int[] colors = new int[5]
 	
@@ -76,11 +79,9 @@ public class JCanvas extends JPanel {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-
 		//Fond
 		Graphics2D g2d = (Graphics2D)g;         			//(inclin d,,color1, inclinaison g, rapport col1 col2, col2, repetition)
-		GradientPaint gp = new GradientPaint(0, 0, Color.white, 200, 600, Color.white, false);                
-
+		GradientPaint gp;// = new GradientPaint(0, 0, Color.white, 200, 600, Color.white, false);                
 		switch (rand_fond) {
 		case 0 :
 			gp = new GradientPaint(200, 0, Color.red, 200, 600, Color.blue, false);
@@ -100,9 +101,13 @@ public class JCanvas extends JPanel {
 		case 5 :
 			gp = new GradientPaint(0, 0, Color.white, 200, 600, Color.white, false);
 			break;
+		default :
+			gp = new GradientPaint(0, 0, Color.white, 200, 600, Color.white, false);
+			break;
 		}
-
+		System.out.println(gp);
 		g2d.setPaint(gp);
+		
 		g2d.fillRect(0,0,this.getWidth(),this.getHeight());
 		//Fin Fond
 
