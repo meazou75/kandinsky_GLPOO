@@ -41,7 +41,7 @@ public class TirageJFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(TirageJFrame.class);
-	
+
 	private ModeleDynamique modele = new ModeleDynamique();
 	private final JTable tableau   = new JTable(modele);
 	private final JSplitPane split;
@@ -62,27 +62,27 @@ public class TirageJFrame extends JFrame {
 		}
 		window.setVisible(false);
 		window.dispose();
-		*/
-		
-		
+		 */
+
+
 		setTitle("Kandins'App");
 		setPreferredSize(new Dimension(980,750));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+
 		tableau.setBackground(Color.DARK_GRAY);
 		tableau.setForeground(Color.WHITE);
 		tableau.setRowHeight(25);
 		tableau.setFont(new Font("OCR A Extended", Font.PLAIN, 15));
 		getContentPane().add(new JScrollPane(tableau), BorderLayout.CENTER);
-		
-		
+
+
 		JPanel buttonPane = new JPanel();
 		buttonPane.setBackground(Color.BLACK);
-		
+
 		JButton generate = new JButton();
 		generate.setBackground(Color.BLACK);
 		generate.setForeground(Color.WHITE);
-		
+
 		final JButton drawButton = new JButton(new DrawAction());
 		final JButton saveButton = new JButton(new SaveAction());
 		final JButton cleanButton = new JButton(new CleanAction());
@@ -90,13 +90,13 @@ public class TirageJFrame extends JFrame {
 		buttonPane.add(saveButton);
 		buttonPane.add(cleanButton);
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
-		
+
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
 		tableau.setAutoCreateRowSorter(true);
 		final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableau.getModel());
 		tableau.setRowSorter(sorter);
-		
+
 		final JScrollPane scroll = new JScrollPane(tableau);
 		canvas = new JCanvas();
 		split = new JSplitPane(JSplitPane.VERTICAL_SPLIT, canvas, scroll);
@@ -104,117 +104,117 @@ public class TirageJFrame extends JFrame {
 		split.setEnabled(false);
 		getContentPane().add(split, BorderLayout.CENTER);
 		ajoutDuMenu();
-		
+
 
 		pack();
 		setLocationRelativeTo(null);
 	}
-	
+
 	private void ajoutDuMenu() {
-        final JMenuBar menuBar = new JMenuBar();
+		final JMenuBar menuBar = new JMenuBar();
 
-        // Menu Fichier
-        final JMenu menuFichier = new JMenu("Fichier");
-        menuBar.add(menuFichier);
+		// Menu Fichier
+		final JMenu menuFichier = new JMenu("Fichier");
+		menuBar.add(menuFichier);
 
-        // Sous-menus
-        final JMenuItem menuOuvrir = new JMenuItem(new OuvrirAction("Ouvrir"));
-        menuFichier.add(menuOuvrir);
-        menuFichier.addSeparator();
-        final JMenuItem menuQuitter = new JMenuItem(new QuitterAction("Quitter"));
-        menuFichier.add(menuQuitter);
+		// Sous-menus
+		final JMenuItem menuOuvrir = new JMenuItem(new OuvrirAction("Ouvrir"));
+		menuFichier.add(menuOuvrir);
+		menuFichier.addSeparator();
+		final JMenuItem menuQuitter = new JMenuItem(new QuitterAction("Quitter"));
+		menuFichier.add(menuQuitter);
 
-        // Menu Edition
-        final JMenu menuEdition = new JMenu("Edition");
-        menuBar.add(menuEdition);
-        final JMenuItem menuAjouter = new JMenuItem(new AjouterLigneAction());
-        menuEdition.add(menuAjouter);
-        
-        // Menu ?
-        final JMenu menuPointInterrogration = new JMenu("?");
-        menuBar.add(menuPointInterrogration);
-        final JMenuItem menuAPropos = new JMenuItem(new PreferencesAction("A propos"));
-        menuPointInterrogration.add(menuAPropos);
+		// Menu Edition
+		final JMenu menuEdition = new JMenu("Edition");
+		menuBar.add(menuEdition);
+		final JMenuItem menuAjouter = new JMenuItem(new AjouterLigneAction());
+		menuEdition.add(menuAjouter);
 
-        // Ajout a la fenetre
-        setJMenuBar(menuBar);
-    }
+		// Menu ?
+		final JMenu menuPointInterrogration = new JMenu("?");
+		menuBar.add(menuPointInterrogration);
+		final JMenuItem menuAPropos = new JMenuItem(new PreferencesAction("A propos"));
+		menuPointInterrogration.add(menuAPropos);
 
-    private class QuitterAction extends AbstractAction {
-        /**
+		// Ajout a la fenetre
+		setJMenuBar(menuBar);
+	}
+
+	private class QuitterAction extends AbstractAction {
+		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
 
 		public QuitterAction(String texte) {
-            super(texte);
-        }
+			super(texte);
+		}
 
-        public void actionPerformed(ActionEvent e) {
-            LOGGER.info("Au revoir");
-            System.exit(0);
-        }
-    }
-	
+		public void actionPerformed(ActionEvent e) {
+			LOGGER.info("Au revoir");
+			System.exit(0);
+		}
+	}
+
 	private class BackAction extends AbstractAction{
 		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
 		private BackAction(String string) {
-    		super(string);
-    	}
+			super(string);
+		}
 		public void actionPerformed(ActionEvent arg0) {
 			dispose();
 			//WelcomeJFrame f = new WelcomeJFrame();
 			//f.setVisible(true);
 		}
-    	
-    }
+
+	}
 	private class OuvrirAction extends AbstractAction {
-        /**
+		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
 
 		public OuvrirAction(String texte) {
-            super(texte);
-        }
+			super(texte);
+		}
 
-        public void actionPerformed(ActionEvent e) {
-            // TODO
-        }
-    }
+		public void actionPerformed(ActionEvent e) {
+			// TODO
+		}
+	}
 
 
-    // Menu Affichage
-    
+	// Menu Affichage
 
-    
 
-    private class AjouterLigneAction extends AbstractAction {
 
-        /**
-         * serialVersionUID
-         */
-        private static final long serialVersionUID = 7183768497443802311L;
 
-        private AjouterLigneAction() {
-            super("Ajouter");
-        }
+	private class AjouterLigneAction extends AbstractAction {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            LOGGER.debug("Click sur le bouton ajouter");
+		/**
+		 * serialVersionUID
+		 */
+		private static final long serialVersionUID = 7183768497443802311L;
 
-            final AjouterTirageActionHandler handler = new AjouterTirageActionHandler(modele);
-            AjouterTirageJDialog popup = new AjouterTirageJDialog(handler);
+		private AjouterLigneAction() {
+			super("Ajouter");
+		}
 
-            popup.setVisible(true);
-        }
-    }
-    
-    private class DrawAction extends AbstractAction {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			LOGGER.debug("Click sur le bouton ajouter");
+
+			final AjouterTirageActionHandler handler = new AjouterTirageActionHandler(modele);
+			AjouterTirageJDialog popup = new AjouterTirageJDialog(handler);
+
+			popup.setVisible(true);
+		}
+	}
+
+	private class DrawAction extends AbstractAction {
 
 		/**
 		 * 
@@ -246,9 +246,9 @@ public class TirageJFrame extends JFrame {
 			canvas.repaint();
 		}
 	}
-	
+
 	private class SaveAction extends AbstractAction {
-		
+
 		/**
 		 * 
 		 */
@@ -263,16 +263,16 @@ public class TirageJFrame extends JFrame {
 			LOGGER.debug("Click sur le bouton Sauver");
 			BufferedImage bufferedImage = new BufferedImage(canvas.getWidth(), canvas.getHeight(), BufferedImage.TYPE_INT_RGB);
 			canvas.paint(bufferedImage.createGraphics());
-			
+
 			try {
 				ImageIO.write(bufferedImage, "png", new File("Image.png"));
 			} catch (Exception e) {
 				System.out.println("Oups");
 			}
 		}
-		
+
 	}
-	
+
 	private class CleanAction extends AbstractAction {
 
 		/**
@@ -287,38 +287,38 @@ public class TirageJFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			LOGGER.debug("Click sur le bouton Effacer");
-			
+
 			canvas.repaint();
 		}
 	}
 
-    private class PreferencesAction extends AbstractAction {
-        /**
+	private class PreferencesAction extends AbstractAction {
+		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
 
 		public PreferencesAction(String texte) {
-            super(texte);
-        }
+			super(texte);
+		}
 
-        public void actionPerformed(ActionEvent e) {
-        	LOGGER.debug("Click sur le bouton préférences");
-        }
-    }
+		public void actionPerformed(ActionEvent e) {
+			LOGGER.debug("Click sur le bouton préférences");
+		}
+	}
 
-    private class AProposAction extends AbstractAction {
-        /**
+	private class AProposAction extends AbstractAction {
+		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
 
 		public AProposAction(String texte) {
-            super(texte);
-        }
+			super(texte);
+		}
 
-        public void actionPerformed(ActionEvent e) {
-        	LOGGER.debug("Click sur le bouton à propos");
-        }
-    }
+		public void actionPerformed(ActionEvent e) {
+			LOGGER.debug("Click sur le bouton à propos");
+		}
+	}
 }
