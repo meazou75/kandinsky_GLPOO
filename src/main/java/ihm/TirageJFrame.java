@@ -1,5 +1,6 @@
 package ihm;
 
+import org.apache.log4j.Logger;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -35,6 +36,7 @@ public class TirageJFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = Logger.getLogger(TirageJFrame.class);
 	
 	private ModeleDynamique modele = new ModeleDynamique();
 	private final JTable tableau   = new JTable(modele);
@@ -197,7 +199,7 @@ public class TirageJFrame extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            //LOGGER.debug("Click sur le bouton ajouter");
+            LOGGER.debug("Click sur le bouton ajouter");
 
             final AjouterTirageActionHandler handler = new AjouterTirageActionHandler(modele);
             AjouterTirageJDialog popup = new AjouterTirageJDialog(handler);
@@ -212,7 +214,7 @@ public class TirageJFrame extends JFrame {
         }
 
         public void actionPerformed(ActionEvent e) {
-            // TODO
+        	LOGGER.debug("Click sur le bouton préférences");
         }
     }
 
@@ -222,7 +224,7 @@ public class TirageJFrame extends JFrame {
         }
 
         public void actionPerformed(ActionEvent e) {
-            // TODO
+        	LOGGER.debug("Click sur le bouton à propos");
         }
     }
 }

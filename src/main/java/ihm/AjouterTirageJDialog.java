@@ -35,10 +35,10 @@ public class AjouterTirageJDialog extends JDialog {
 	    private JTextField boule1 = new JTextField(2);
 	    private JTextField boule2 = new JTextField(2);
 	    private JTextField boule3 = new JTextField(2);
+	    private JTextField boule4 = new JTextField(2);
+	    private JTextField boule5 = new JTextField(2);
 	    private JTextField etoile1 = new JTextField(2);
 	    private JTextField etoile2 = new JTextField(2);
-	    private JTextField couleurs = new JTextField(15);
-	    private JTextField poids = new JTextField(15);
 
 	    private JButton ajouterButton = new JButton(new AjouterAction("Ajouter"));
 	    private JButton annulerButton = new JButton(new AnnulerAction("Annuler"));
@@ -99,29 +99,11 @@ public class AjouterTirageJDialog extends JDialog {
 	        ajouter("Boule 1", boule1);
 	        ajouter("Boule 2", boule2);
 	        ajouter("Boule 3", boule3);
+	        ajouter("Boule 4", boule4);
+	        ajouter("Boule 5", boule5);
 	        ajouter("Etoile 1", etoile1);
 	        ajouter("Etoile 2", etoile2);
 	        
-
-	       
-
-	        // Si on avait voulu mettre des champs pour la date de naissance, on aurait pu faire comment suit :
-	        // for(int i = 1; i <= 31;i++) {
-	        // jour.addItem(i);
-	        // }
-	        //
-	        // // Date de naissance
-	        // for (int i = 1; i <= 31; i++) {
-	        // jour.addItem(i);
-	        // }
-	        // for (int i = 1; i <= 12; i++) {
-	        // mois.addItem(i);
-	        // }
-	        // for (int i = 2013; 1970 < i; i--) {
-	        // annee.addItem(i);
-	        // }
-	        // ajouter("Naissance :", jour, mois, annee);
-
 	        // Taille du panel
 	        formPanel.setPreferredSize(new Dimension(3 * espace + widthLabel + widthChamp, y + espace));
 
@@ -144,30 +126,6 @@ public class AjouterTirageJDialog extends JDialog {
 	        formPanel.add(champ);
 	    }
 
-	    // private void ajouter(final String label, final JComponent champ1, final JComponent champ2, final JComponent champ3) {
-	    // y += espace;
-	    //
-	    // final JLabel l = new JLabel(label);
-	    // l.setBounds(espace, y, widthLabel, heightLigne);
-	    // l.setHorizontalAlignment(RIGHT);
-	    //
-	    // int x = 2 * espace + widthLabel;
-	    // champ1.setBounds(x, y, widthChampMultiple, heightLigne);
-	    //
-	    // x += espace + widthChampMultiple;
-	    // champ2.setBounds(x, y, widthChampMultiple, heightLigne);
-	    //
-	    // x += espace + widthChampMultiple;
-	    // champ3.setBounds(x, y, widthChampMultiple, heightLigne);
-	    //
-	    // y += heightLigne;
-	    //
-	    // formPanel.add(l);
-	    // formPanel.add(champ1);
-	    // formPanel.add(champ2);
-	    // formPanel.add(champ3);
-	    // }
-
 	    private class AjouterAction extends AbstractAction {
 	        /**
 			 * 
@@ -182,7 +140,8 @@ public class AjouterTirageJDialog extends JDialog {
 	            LOGGER.debug("Ajouter");
 
 	            final SimpleTirage nouveauTirage = new SimpleTirage();
-
+	            remplirTirage(nouveauTirage);
+	            
 	            try {
 	                actionHandler.process(Action.CREER, nouveauTirage);
 	            } catch (TirageException exception) {
@@ -192,6 +151,23 @@ public class AjouterTirageJDialog extends JDialog {
 	            // Fermeture de la fenêtre
 	            AjouterTirageJDialog.this.closePopup();
 	        }
+	    }
+	    
+	    private void remplirTirage(final SimpleTirage tirage) {
+	    	String b1 = boule1.getText();
+	    	tirage.setB1(Integer.parseInt(b1));
+	    	String b2 = boule2.getText();
+	    	tirage.setB2(Integer.parseInt(b2));
+	    	String b3 = boule3.getText();
+	    	tirage.setB3(Integer.parseInt(b3));
+	    	String b4 = boule4.getText();
+	    	tirage.setB4(Integer.parseInt(b4));
+	    	String b5 = boule5.getText();
+	    	tirage.setB5(Integer.parseInt(b5));
+	    	String e1 = etoile1.getText();
+	    	tirage.setE1(Integer.parseInt(e1));
+	    	String e2 = etoile2.getText();
+	    	tirage.setE2(Integer.parseInt(e2));
 	    }
 
 
