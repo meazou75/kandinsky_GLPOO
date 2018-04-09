@@ -7,9 +7,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,6 +24,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
@@ -40,11 +44,13 @@ public class TirageJFrame extends JFrame {
 	
 	private ModeleDynamique modele = new ModeleDynamique();
 	private final JTable tableau   = new JTable(modele);
+	private final JSplitPane split;
+	private JCanvas canvas;
 
 	public TirageJFrame() throws MalformedURLException {
 
 		super();
-		JWindow window = new JWindow();
+		/*JWindow window = new JWindow();
 		window.getContentPane().add(
 		    new JLabel("", new ImageIcon("231485.jpg"), SwingConstants.CENTER));
 		window.setBounds(0, 0, 1068, 576);
@@ -56,11 +62,11 @@ public class TirageJFrame extends JFrame {
 		}
 		window.setVisible(false);
 		window.dispose();
-		
+		*/
 		
 		
 		setTitle("Kandins'App");
-		setPreferredSize(new Dimension(1068, 576));
+		setPreferredSize(new Dimension(980,750));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		tableau.setBackground(Color.DARK_GRAY);
@@ -77,7 +83,13 @@ public class TirageJFrame extends JFrame {
 		generate.setBackground(Color.BLACK);
 		generate.setForeground(Color.WHITE);
 		
-		buttonPane.add(new JButton(new AjouterLigneAction()));
+		final JButton drawButton = new JButton(new DrawAction());
+		final JButton saveButton = new JButton(new SaveAction());
+		final JButton cleanButton = new JButton(new CleanAction());
+		buttonPane.add(drawButton);
+		buttonPane.add(saveButton);
+		buttonPane.add(cleanButton);
+		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 		
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
@@ -85,6 +97,12 @@ public class TirageJFrame extends JFrame {
 		final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableau.getModel());
 		tableau.setRowSorter(sorter);
 		
+		final JScrollPane scroll = new JScrollPane(tableau);
+		canvas = new JCanvas();
+		split = new JSplitPane(JSplitPane.VERTICAL_SPLIT, canvas, scroll);
+		split.setDividerLocation(480);
+		split.setEnabled(false);
+		getContentPane().add(split, BorderLayout.CENTER);
 		ajoutDuMenu();
 		
 
@@ -102,8 +120,6 @@ public class TirageJFrame extends JFrame {
         // Sous-menus
         final JMenuItem menuOuvrir = new JMenuItem(new OuvrirAction("Ouvrir"));
         menuFichier.add(menuOuvrir);
-        final JMenuItem menuSauver = new JMenuItem(new SauverAction("Sauver"));
-        menuFichier.add(menuSauver);
         menuFichier.addSeparator();
         final JMenuItem menuQuitter = new JMenuItem(new QuitterAction("Quitter"));
         menuFichier.add(menuQuitter);
@@ -123,29 +139,28 @@ public class TirageJFrame extends JFrame {
         // Ajout a la fenetre
         setJMenuBar(menuBar);
     }
-	
-	private class SauverAction extends AbstractAction {
-        public SauverAction(String texte) {
-            super(texte);
-        }
-
-        public void actionPerformed(ActionEvent e) {
-            // TODO
-        }
-    }
 
     private class QuitterAction extends AbstractAction {
-        public QuitterAction(String texte) {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public QuitterAction(String texte) {
             super(texte);
         }
 
         public void actionPerformed(ActionEvent e) {
-            //LOGGER.info("Au revoir");
+            LOGGER.info("Au revoir");
             System.exit(0);
         }
     }
 	
 	private class BackAction extends AbstractAction{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private BackAction(String string) {
     		super(string);
     	}
@@ -157,7 +172,12 @@ public class TirageJFrame extends JFrame {
     	
     }
 	private class OuvrirAction extends AbstractAction {
-        public OuvrirAction(String texte) {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public OuvrirAction(String texte) {
             super(texte);
         }
 
@@ -193,9 +213,92 @@ public class TirageJFrame extends JFrame {
             popup.setVisible(true);
         }
     }
+    
+    private class DrawAction extends AbstractAction {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public DrawAction() {
+			super("Dessiner");
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			LOGGER.debug("Click sur le bouton Dessiner");
+			final int[] rows = tableau.getSelectedRows();
+			int shape = 0;
+			int order = 0;
+			int fgColor = 0;
+			int bgColor = 0;
+			for (int row : rows) {
+				shape = (shape + (int)tableau.getValueAt(row, 1))%2;
+				order = (order = (int)tableau.getValueAt(row, 2))%5;
+				fgColor = (fgColor + (int)tableau.getValueAt(row, 3))%10;
+				bgColor = (bgColor + (int)tableau.getValueAt(row, 4))%10;
+			}
+			//canvas.setShape(shape);
+			//canvas.setOrder(1+order);
+			//canvas.setFgColor(fgColor);
+			//canvas.setBgColor(bgColor);
+			canvas.repaint();
+		}
+	}
+	
+	private class SaveAction extends AbstractAction {
+		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		private SaveAction() {
+			super("Sauver");
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			LOGGER.debug("Click sur le bouton Sauver");
+			BufferedImage bufferedImage = new BufferedImage(canvas.getWidth(), canvas.getHeight(), BufferedImage.TYPE_INT_RGB);
+			canvas.paint(bufferedImage.createGraphics());
+			
+			try {
+				ImageIO.write(bufferedImage, "png", new File("Image.png"));
+			} catch (Exception e) {
+				System.out.println("Oups");
+			}
+		}
+		
+	}
+	
+	private class CleanAction extends AbstractAction {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public CleanAction() {
+			super("Effacer");
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			LOGGER.debug("Click sur le bouton Effacer");
+			
+			canvas.repaint();
+		}
+	}
 
     private class PreferencesAction extends AbstractAction {
-        public PreferencesAction(String texte) {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public PreferencesAction(String texte) {
             super(texte);
         }
 
@@ -205,7 +308,12 @@ public class TirageJFrame extends JFrame {
     }
 
     private class AProposAction extends AbstractAction {
-        public AProposAction(String texte) {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public AProposAction(String texte) {
             super(texte);
         }
 

@@ -68,7 +68,6 @@ public class ModeleDynamique extends AbstractTableModel {
 		}
 	}
 
-	// A MODIFIER
 	public String getColumnName(int columnIndex) { // retourne l'entete de la colonne indiquée
 		return header[columnIndex];
 	}
@@ -103,7 +102,7 @@ public class ModeleDynamique extends AbstractTableModel {
 		tirages.add(tirage);
 
 		final int position = tirages.size() - 1;
-		fireTableRowsInserted(position, position);
+		fireTableRowsInserted(1, position);
 	}
 	
 	public Tirage rowToTirage(int rowIndex) {
