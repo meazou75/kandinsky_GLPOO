@@ -69,14 +69,6 @@ public class TirageJFrame extends JFrame {
 		tableau.setFont(new Font("OCR A Extended", Font.PLAIN, 15));
 		getContentPane().add(new JScrollPane(tableau), BorderLayout.CENTER);
 		
-		JMenuBar menuBar = new JMenuBar();
-		final JMenu menuFichier = new JMenu("Fichier");
-		menuFichier.addSeparator();
-		
-		final JMenuItem menuQuitter = new JMenuItem(new QuitterAction("Quitter"));
-		menuFichier.add(menuQuitter);
-		
-		setJMenuBar(menuBar);
 		
 		JPanel buttonPane = new JPanel();
 		buttonPane.setBackground(Color.BLACK);
@@ -121,16 +113,10 @@ public class TirageJFrame extends JFrame {
         menuBar.add(menuEdition);
         final JMenuItem menuAjouter = new JMenuItem(new AjouterLigneAction());
         menuEdition.add(menuAjouter);
-
-        // Menu Affichage
-        final JMenu menuAffichage = new JMenu("Affichage");
-        menuBar.add(menuAffichage);
-
+        
         // Menu ?
         final JMenu menuPointInterrogration = new JMenu("?");
         menuBar.add(menuPointInterrogration);
-        final JMenuItem menuPreferences = new JMenuItem(new PreferencesAction("Préférences"));
-        menuPointInterrogration.add(menuPreferences);
         final JMenuItem menuAPropos = new JMenuItem(new PreferencesAction("A propos"));
         menuPointInterrogration.add(menuAPropos);
 
