@@ -66,12 +66,7 @@ public class AjouterTirageJDialog extends JDialog {
 
 		this.actionHandler = actionHandler;
 		this.tirage = tirage;
-
-		if (tirage == null) {
-			setTitle("Ajouter un chien");
-		} else {
-			setTitle("Modifier un chien");
-		}
+		setTitle("Ajouter un tirage");
 
 		// La taille est calculee a l'aide du panel (cf. addFormulaire).
 		// setPreferredSize(new Dimension(400, 250));
