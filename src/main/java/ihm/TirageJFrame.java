@@ -80,7 +80,7 @@ public class TirageJFrame extends JFrame {
 		buttonPane.setBackground(Color.BLACK);
 
 		JButton generate = new JButton();
-		generate.setBackground(Color.BLACK);
+		generate.setBackground(Color.WHITE);
 		generate.setForeground(Color.WHITE);
 
 		final JButton drawButton = new JButton(new DrawAction());
