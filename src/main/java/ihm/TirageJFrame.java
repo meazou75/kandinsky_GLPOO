@@ -69,8 +69,8 @@ public class TirageJFrame extends JFrame {
 		setPreferredSize(new Dimension(980,750));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		tableau.setBackground(Color.DARK_GRAY);
-		tableau.setForeground(Color.WHITE);
+		tableau.setBackground(Color.WHITE);
+		tableau.setForeground(Color.BLACK);
 		tableau.setRowHeight(25);
 		tableau.setFont(new Font("OCR A Extended", Font.PLAIN, 15));
 		getContentPane().add(new JScrollPane(tableau), BorderLayout.CENTER);

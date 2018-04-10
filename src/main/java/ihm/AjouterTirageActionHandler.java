@@ -40,7 +40,7 @@ public class AjouterTirageActionHandler implements ActionHandler {
 		LOGGER.debug("Ajouter");
 
 		if (!valider(tirage)) {
-			//System.out.println("pas de bonnes valeurs pour le tirage");
+			// System.out.println("pas de bonnes valeurs pour le tirage");
 		}
 
 		// On a acces au modele et on peut donc demander l'ajout.
